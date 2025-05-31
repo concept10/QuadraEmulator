@@ -1,0 +1,36 @@
+{
+    "name": "QEMU Macintosh Quadra 800 A/UX Emulation",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "features": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "redhat.vscode-yaml"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+    "forwardPorts": [5000, 8000],
+    "mounts": [
+        "source=${localWorkspaceFolder}/storage,target=/workspace/storage,type=bind,consistency=cached"
+    ],
+    "runArgs": [
+        "--privileged",
+        "--device=/dev/kvm",
+        "--device=/dev/net/tun"
+    ],
+    "containerEnv": {
+        "DISPLAY": ":0",
+        "QEMU_AUDIO_DRV": "none"
+    },
+    "postCreateCommand": "chmod +x scripts/*.sh && ./scripts/setup-aux.sh",
+    "remoteUser": "vscode",
+    "workspaceFolder": "/workspace"
+}

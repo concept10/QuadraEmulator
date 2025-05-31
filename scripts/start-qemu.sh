@@ -7,7 +7,7 @@ set -e
 
 # Configuration
 QEMU_BIN="/usr/bin/qemu-system-m68k"
-WORKSPACE_DIR="/workspace"
+WORKSPACE_DIR="$(pwd)"
 STORAGE_DIR="${WORKSPACE_DIR}/storage"
 ROMS_DIR="${STORAGE_DIR}/roms"
 DISKS_DIR="${STORAGE_DIR}/disks"

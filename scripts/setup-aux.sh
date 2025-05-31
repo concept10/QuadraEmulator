@@ -4,7 +4,7 @@
 
 set -e
 
-WORKSPACE_DIR="/workspace"
+WORKSPACE_DIR="$(pwd)"
 STORAGE_DIR="${WORKSPACE_DIR}/storage"
 
 echo "Setting up A/UX emulation environment..."
@@ -22,10 +22,15 @@ chmod 755 "${WORKSPACE_DIR}/scripts/"*.sh
 
 echo "Creating empty disk images for testing..."
 
-# Create a small test disk image if none exists
-if [ ! -f "${STORAGE_DIR}/disks/test.qcow2" ]; then
-    qemu-img create -f qcow2 "${STORAGE_DIR}/disks/test.qcow2" 100M
-    echo "Created test disk image: ${STORAGE_DIR}/disks/test.qcow2"
+# Create a small test disk image if none exists (requires QEMU to be installed)
+if command -v qemu-img >/dev/null 2>&1; then
+    if [ ! -f "${STORAGE_DIR}/disks/test.qcow2" ]; then
+        qemu-img create -f qcow2 "${STORAGE_DIR}/disks/test.qcow2" 100M
+        echo "Created test disk image: ${STORAGE_DIR}/disks/test.qcow2"
+    fi
+else
+    echo "Note: qemu-img not found. Install QEMU to create disk images."
+    echo "In devcontainer: QEMU will be installed automatically"
 fi
 
 # Create README files in storage directories

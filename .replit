@@ -1,0 +1,39 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "QEMU A/UX Setup"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "qemu_aux_setup"
+
+[[workflows.workflow]]
+name = "QEMU A/UX Setup"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./scripts/setup-aux.sh"
+
+[[workflows.workflow]]
+name = "qemu_aux_setup"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./scripts/setup-aux.sh"
+
+[deployment]
+run = ["sh", "-c", "./scripts/setup-aux.sh"]

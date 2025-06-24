@@ -12,16 +12,20 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 - **Devcontainer**: Ubuntu 22.04 base with QEMU m68k system emulation
 - **Storage Structure**: Organized directories for ROMs, disk images, NVRAM, and CD-ROMs
 - **Scripts**: Automated setup and QEMU startup with installation/boot modes
-- **Documentation**: Complete setup guides and troubleshooting information
+- **Networking**: Dual mode support - user networking (default) and bridge networking (advanced)
+- **Documentation**: Complete setup guides, networking configuration, and troubleshooting information
 
 ## Recent Changes
 - 2025-05-31: Initial project creation with complete devcontainer setup
 - 2025-05-31: Added MIT license and SPDX headers to all project files
 - 2025-05-31: Created storage directory structure with helpful README files
+- 2025-05-31: Added GitHub repository link to license and all project files
+- 2025-05-31: Implemented advanced bridge networking configuration with TAP interfaces
 
 ## User Preferences
 None specified yet.
 
 ## License
 MIT License (c) 2025 concept10
-All files include SPDX copyright and license identifiers.
+GitHub Repository: https://github.com/concept10/qemu-aux-emulation
+All files include SPDX copyright and license identifiers with GitHub repository link.

@@ -70,7 +70,6 @@ usage() {
     echo "  --install          Boot from floppy for installation"
     echo "  --boot-hdd         Boot from hard disk (normal operation)"
     echo "  --vnc              Use VNC display instead of SDL"
-    echo "  --bridge           Use bridge networking instead of user networking"
     echo "  --memory SIZE      Set memory size in MB (default: 128)"
     echo "  --help             Show this help message"
     echo ""
@@ -86,7 +85,6 @@ usage() {
 INSTALL_MODE=false
 BOOT_MODE="hdd"
 DISPLAY_TYPE="sdl"
-NETWORK_MODE="user"
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -102,10 +100,6 @@ while [[ $# -gt 0 ]]; do
         --vnc)
             DISPLAY_TYPE="vnc"
             DISPLAY_MODE="vnc=:1"
-            shift
-            ;;
-        --bridge)
-            NETWORK_MODE="bridge"
             shift
             ;;
         --memory)
@@ -129,7 +123,6 @@ echo "QEMU Macintosh Quadra 800 A/UX Emulation"
 echo "=========================================="
 echo "Boot mode: $BOOT_MODE"
 echo "Display: $DISPLAY_TYPE"
-echo "Network: $NETWORK_MODE"
 echo "Memory: ${MEMORY}MB"
 echo ""
 
@@ -179,23 +172,6 @@ else
     USE_CDROM=false
 fi
 
-# Check bridge networking requirements
-if [ "$NETWORK_MODE" = "bridge" ]; then
-    if ! brctl show | grep -q "br0"; then
-        echo "Error: Bridge networking requested but br0 not found."
-        echo "Please run: sudo ./scripts/setup-bridge.sh"
-        exit 1
-    fi
-    
-    if ! ip link show tap0 >/dev/null 2>&1; then
-        echo "Error: TAP interface tap0 not found."
-        echo "Please run: sudo ./scripts/setup-bridge.sh"
-        exit 1
-    fi
-    
-    echo "Using bridge networking (br0/tap0)"
-fi
-
 echo ""
 echo "Starting QEMU emulation..."
 echo "Log file: ${LOGS_DIR}/qemu.log"
@@ -213,6 +189,8 @@ QEMU_CMD=(
     -serial stdio
     -bios "$ROM_FILE"
     -g "$GRAPHICS_MODE"
+    -net nic,model="$NETWORK_MODEL"
+    -net user
     -drive file="$NVRAM_FILE",format=raw,if=mtd
 )
 
@@ -243,20 +221,6 @@ if [ "$USE_CDROM" = true ]; then
     QEMU_CMD+=(
         -device scsi-cd,scsi-id=3,drive=cd0,vendor="MATSHITA",product="CD-ROM CR-8005",ver="1.0k"
         -drive file="$CDROM_FILE",format=raw,media=cdrom,if=none,id=cd0
-    )
-fi
-
-# Add network configuration
-if [ "$NETWORK_MODE" = "bridge" ]; then
-    QEMU_CMD+=(
-        -netdev tap,id=net0,ifname=tap0,script=no,downscript=no
-        -device dp83932,netdev=net0
-    )
-else
-    # Default user networking
-    QEMU_CMD+=(
-        -net nic,model="$NETWORK_MODEL"
-        -net user
     )
 fi
 

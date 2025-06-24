@@ -1,2 +1,5 @@
+# SPDX-FileCopyrightText: 2025 concept10
+# SPDX-License-Identifier: MIT
+# GitHub: https://github.com/concept10/qemu-aux-emulation
 # This file ensures the storage directory is tracked by Git
 # while keeping it empty for user files

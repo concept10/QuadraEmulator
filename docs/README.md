@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 concept10
+SPDX-License-Identifier: MIT
+GitHub: https://github.com/concept10/qemu-aux-emulation
+-->
+
 # QEMU Macintosh Quadra 800 A/UX Emulation
 
 This devcontainer provides a complete environment for emulating a Macintosh Quadra 800 running Apple A/UX (Apple UNIX) using QEMU.
@@ -31,6 +37,13 @@ Apple A/UX was Apple's implementation of UNIX System V Release 2.2 for Macintosh
    ```bash
    ./scripts/start-qemu.sh --boot-hdd
    ```
+
+## Networking Options
+
+- **User Networking (Default)**: Simple NAT-style networking, no root required
+- **Bridge Networking**: Advanced networking with full connectivity, requires setup
+
+For detailed networking configuration, see [NETWORKING.md](NETWORKING.md).
 
 ## Directory Structure
 

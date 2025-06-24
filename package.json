@@ -1,0 +1,20 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "<!-- SPDX-FileCopyrightText: 2025 concept10 SPDX-License-Identifier: MIT GitHub: https://github.com/concept10/qemu-aux-emulation -->",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.1",
+    "ws": "^8.18.2"
+  }
+}

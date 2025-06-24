@@ -19,6 +19,10 @@ args = "QEMU A/UX Setup"
 task = "workflow.run"
 args = "qemu_aux_setup"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "GUI Server"
+
 [[workflows.workflow]]
 name = "QEMU A/UX Setup"
 author = "agent"
@@ -35,5 +39,18 @@ author = "agent"
 task = "shell.exec"
 args = "./scripts/setup-aux.sh"
 
+[[workflows.workflow]]
+name = "GUI Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd gui && npm start"
+waitForPort = 5000
+
 [deployment]
 run = ["sh", "-c", "./scripts/setup-aux.sh"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80

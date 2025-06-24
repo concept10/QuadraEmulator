@@ -15,6 +15,12 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 - **Networking**: Dual mode support - user networking (default) and bridge networking (advanced)
   - User networking: Simple NAT, no root required
   - Bridge networking: TAP interface br0, DHCP range 192.168.100.100-200, full bidirectional access
+- **GUI Interface**: Web-based management interface with real-time monitoring and control
+  - System control panel for QEMU management
+  - Network configuration and monitoring
+  - File upload and management system
+  - Live configuration editing
+  - WebSocket-based real-time updates
 - **Documentation**: Complete setup guides, networking configuration, troubleshooting, and practical examples
 
 ## Recent Changes
@@ -23,6 +29,7 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 - 2025-05-31: Created storage directory structure with helpful README files
 - 2025-05-31: Added GitHub repository link to license and all project files
 - 2025-05-31: Implemented advanced bridge networking configuration with TAP interfaces
+- 2025-05-31: Added web-based GUI management interface with real-time monitoring
 
 ## User Preferences
 None specified yet.

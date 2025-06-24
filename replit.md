@@ -13,7 +13,9 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 - **Storage Structure**: Organized directories for ROMs, disk images, NVRAM, and CD-ROMs
 - **Scripts**: Automated setup and QEMU startup with installation/boot modes
 - **Networking**: Dual mode support - user networking (default) and bridge networking (advanced)
-- **Documentation**: Complete setup guides, networking configuration, and troubleshooting information
+  - User networking: Simple NAT, no root required
+  - Bridge networking: TAP interface br0, DHCP range 192.168.100.100-200, full bidirectional access
+- **Documentation**: Complete setup guides, networking configuration, troubleshooting, and practical examples
 
 ## Recent Changes
 - 2025-05-31: Initial project creation with complete devcontainer setup

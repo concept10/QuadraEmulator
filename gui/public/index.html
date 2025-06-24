@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+SPDX-FileCopyrightText: 2025 concept10
+SPDX-License-Identifier: MIT
+GitHub: https://github.com/concept10/qemu-aux-emulation
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QEMU A/UX Management Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖥️ QEMU A/UX Management Interface</h1>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Initializing...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="panel-grid">
+                <!-- System Control Panel -->
+                <div class="panel">
+                    <h2>System Control</h2>
+                    <div class="control-group">
+                        <div class="form-row">
+                            <label for="bootMode">Boot Mode:</label>
+                            <select id="bootMode">
+                                <option value="boot-hdd">Boot from HDD</option>
+                                <option value="install">Installation Mode</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="networkMode">Network Mode:</label>
+                            <select id="networkMode">
+                                <option value="user">User Networking</option>
+                                <option value="bridge">Bridge Networking</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="displayMode">Display:</label>
+                            <select id="displayMode">
+                                <option value="sdl">SDL Graphics</option>
+                                <option value="vnc">VNC Display</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="memorySize">Memory (MB):</label>
+                            <input type="number" id="memorySize" value="128" min="64" max="512" step="32">
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="startBtn" class="btn btn-primary">Start QEMU</button>
+                        <button id="stopBtn" class="btn btn-secondary" disabled>Stop QEMU</button>
+                    </div>
+                </div>
+
+                <!-- System Status Panel -->
+                <div class="panel">
+                    <h2>System Status</h2>
+                    <div class="status-info">
+                        <div class="status-item">
+                            <span class="label">Status:</span>
+                            <span id="systemStatus" class="value">Stopped</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Uptime:</span>
+                            <span id="systemUptime" class="value">--</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Current Mode:</span>
+                            <span id="currentMode" class="value">--</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Network:</span>
+                            <span id="currentNetwork" class="value">--</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Memory:</span>
+                            <span id="currentMemory" class="value">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Management Panel -->
+                <div class="panel">
+                    <h2>Network Management</h2>
+                    <div class="network-status">
+                        <div class="status-item">
+                            <span class="label">Bridge Status:</span>
+                            <span id="bridgeStatus" class="value">Checking...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="setupBridgeBtn" class="btn btn-info">Setup Bridge</button>
+                        <button id="removeBridgeBtn" class="btn btn-warning">Remove Bridge</button>
+                        <button id="bridgeStatusBtn" class="btn btn-secondary">Check Status</button>
+                    </div>
+                    
+                    <div id="bridgeOutput" class="output-area" style="display: none;"></div>
+                </div>
+
+                <!-- File Management Panel -->
+                <div class="panel">
+                    <h2>File Management</h2>
+                    <div class="file-upload">
+                        <div class="form-row">
+                            <label for="fileCategory">Category:</label>
+                            <select id="fileCategory">
+                                <option value="roms">ROM Files</option>
+                                <option value="disks">Disk Images</option>
+                                <option value="cdrom">CD-ROM Images</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <input type="file" id="fileInput" accept=".rom,.img,.iso,.qcow2,.bin">
+                            <button id="uploadBtn" class="btn btn-primary">Upload File</button>
+                        </div>
+                    </div>
+                    
+                    <div class="file-lists">
+                        <div class="file-category">
+                            <h3>ROM Files</h3>
+                            <div id="romFiles" class="file-list"></div>
+                        </div>
+                        
+                        <div class="file-category">
+                            <h3>Disk Images</h3>
+                            <div id="diskFiles" class="file-list"></div>
+                        </div>
+                        
+                        <div class="file-category">
+                            <h3>CD-ROM Images</h3>
+                            <div id="cdromFiles" class="file-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuration Panel -->
+                <div class="panel">
+                    <h2>Configuration</h2>
+                    <div class="config-editor">
+                        <textarea id="configEditor" rows="15" placeholder="Loading configuration..."></textarea>
+                        <div class="button-group">
+                            <button id="loadConfigBtn" class="btn btn-secondary">Reload Config</button>
+                            <button id="saveConfigBtn" class="btn btn-primary">Save Config</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Log Output Panel -->
+                <div class="panel full-width">
+                    <h2>System Log</h2>
+                    <div id="logOutput" class="log-area"></div>
+                    <button id="clearLogBtn" class="btn btn-secondary">Clear Log</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="notification" class="notification" style="display: none;"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

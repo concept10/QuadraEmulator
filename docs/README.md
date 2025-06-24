@@ -8,6 +8,8 @@ GitHub: https://github.com/concept10/qemu-aux-emulation
 
 This devcontainer provides a complete environment for emulating a Macintosh Quadra 800 running Apple A/UX (Apple UNIX) using QEMU.
 
+**GitHub Repository:** https://github.com/concept10/qemu-aux-emulation
+
 ## Overview
 
 Apple A/UX was Apple's implementation of UNIX System V Release 2.2 for Macintosh computers. This emulation environment allows you to run A/UX 3.0.1 on a virtual Macintosh Quadra 800.

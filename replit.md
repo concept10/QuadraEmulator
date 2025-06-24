@@ -18,10 +18,12 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 - 2025-05-31: Initial project creation with complete devcontainer setup
 - 2025-05-31: Added MIT license and SPDX headers to all project files
 - 2025-05-31: Created storage directory structure with helpful README files
+- 2025-05-31: Added GitHub repository link to license and all project files
 
 ## User Preferences
 None specified yet.
 
 ## License
 MIT License (c) 2025 concept10
-All files include SPDX copyright and license identifiers.
+GitHub Repository: https://github.com/concept10/qemu-aux-emulation
+All files include SPDX copyright and license identifiers with GitHub repository link.

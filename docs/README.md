@@ -38,5 +38,12 @@ Apple A/UX was Apple's implementation of UNIX System V Release 2.2 for Macintosh
    ./scripts/start-qemu.sh --boot-hdd
    ```
 
+## Networking Options
+
+- **User Networking (Default)**: Simple NAT-style networking, no root required
+- **Bridge Networking**: Advanced networking with full connectivity, requires setup
+
+For detailed networking configuration, see [NETWORKING.md](NETWORKING.md).
+
 ## Directory Structure
 

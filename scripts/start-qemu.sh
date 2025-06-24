@@ -70,6 +70,7 @@ usage() {
     echo "  --install          Boot from floppy for installation"
     echo "  --boot-hdd         Boot from hard disk (normal operation)"
     echo "  --vnc              Use VNC display instead of SDL"
+    echo "  --bridge           Use bridge networking instead of user networking"
     echo "  --memory SIZE      Set memory size in MB (default: 128)"
     echo "  --help             Show this help message"
     echo ""

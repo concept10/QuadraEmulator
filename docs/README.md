@@ -45,5 +45,6 @@ Apple A/UX was Apple's implementation of UNIX System V Release 2.2 for Macintosh
 
 For detailed networking configuration, see [NETWORKING.md](NETWORKING.md).
 
-## Directory Structure
+## Directory Structure![7ACDEF1D-3A8F-45B4-A64C-840348A6B712](https://github.com/user-attachments/assets/308859c6-c702-4cb8-a6fc-7950267ab9a3)
+
 

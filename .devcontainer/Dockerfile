@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 concept10
+# SPDX-License-Identifier: MIT
+# GitHub: https://github.com/concept10/qemu-aux-emulation
+
 FROM ubuntu:22.04
 
 # Install dependencies

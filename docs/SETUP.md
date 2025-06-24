@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 concept10
+SPDX-License-Identifier: MIT
+GitHub: https://github.com/concept10/qemu-aux-emulation
+-->
+
 # Setup Guide for A/UX Emulation
 
 This guide provides detailed instructions for setting up and running Apple A/UX on the emulated Macintosh Quadra 800.

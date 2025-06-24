@@ -14,6 +14,7 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 
 - **Full Macintosh Quadra 800 emulation** with Motorola 68040 CPU
 - **Dual networking modes**: Simple user networking and advanced bridge networking
+- **Web-based GUI management interface** with real-time monitoring
 - **Automated setup scripts** for easy deployment
 - **Complete devcontainer** with all dependencies
 - **Comprehensive documentation** and troubleshooting guides
@@ -24,6 +25,9 @@ Complete devcontainer environment for emulating a Macintosh Quadra 800 running A
 ```bash
 # Initialize the environment
 ./scripts/setup-aux.sh
+
+# Start the GUI management interface
+# Access at http://localhost:5000
 ```
 
 ### 2. Choose Networking Mode
@@ -63,6 +67,7 @@ Place these files in the storage directories:
 
 ## Usage Examples
 
+### Command Line
 ```bash
 # Basic installation
 ./scripts/start-qemu.sh --install
@@ -83,6 +88,14 @@ Place these files in the storage directories:
 sudo ./scripts/remove-bridge.sh
 ```
 
+### GUI Interface
+Access the web management interface at http://localhost:5000 for:
+- Easy system control with dropdown menus
+- Real-time status monitoring
+- File upload and management
+- Network configuration
+- Live system logs
+
 ## Directory Structure
 
 ```
@@ -100,6 +113,11 @@ sudo ./scripts/remove-bridge.sh
 │   ├── setup-bridge.sh   # Bridge network setup
 │   ├── remove-bridge.sh  # Bridge network removal
 │   └── bridge-status.sh  # Network status check
+├── gui/                   # Web management interface
+│   ├── server.js         # Express.js server
+│   ├── package.json      # Node.js dependencies
+│   ├── start-gui.sh      # GUI startup script
+│   └── public/           # Web interface files
 └── storage/               # File storage
     ├── roms/             # ROM files
     ├── disks/            # Disk images
